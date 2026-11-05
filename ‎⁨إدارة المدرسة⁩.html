@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>إدارة المدرسة</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="إدارة المدرسة">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1d2330;--mu:#6b7385;--bd:#e2e5ec;--pr:#1f6feb;--ok:#14803c;--no:#c62828;--okb:#e6f4ea;--nob:#fdeaea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171c;--card:#1d2128;--tx:#e8eaf0;--mu:#99a1b3;--bd:#2c323c;--pr:#5b9dff;--ok:#5fd38a;--no:#ff8a80;--okb:#173324;--nob:#3a1d1d;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;font-size:15px}
+header{background:var(--card);border-bottom:1px solid var(--bd);padding:10px 12px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
+h1{font-size:17px;margin:0 0 8px}
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+nav button,.btn{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 12px;border-radius:8px;font:inherit;cursor:pointer;white-space:nowrap}
+nav button.on,.btn.pr{background:var(--pr);color:#fff;border-color:var(--pr)}
+.btn.sm{padding:4px 8px;font-size:13px}.btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.btn.no{color:var(--no)}
+main{padding:12px;max-width:980px;margin:auto}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;margin-bottom:12px}
+.card h2{font-size:15px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.stat{background:var(--bg);border-radius:10px;padding:10px}.stat b{display:block;font-size:19px;margin-top:2px}.stat span{color:var(--mu);font-size:12px}
+input,select,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:8px;width:100%}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}.row>*{flex:1 1 130px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:7px 8px;border-bottom:1px solid var(--bd);text-align:right;white-space:nowrap}th{color:var(--mu);font-weight:600;font-size:12px}
+tfoot td{font-weight:700}
+.pos{color:var(--ok)}.neg{color:var(--no)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:640px){.cols{grid-template-columns:1fr}}
+.it{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:8px;border-radius:8px;margin-bottom:6px;font-size:14px}
+.it.p{background:var(--okb)}.it.u{background:var(--nob)}
+.mu{color:var(--mu);font-size:12px}
+body{font-family:Cairo,system-ui,-apple-system,Tahoma,Arial,sans-serif}
+:root:root:root{--bg:#0e1712;--card:#16231b;--tx:#f1f7f3;--mu:#9fb3a6;--bd:#25382c;--pr:#7be495;--ok:#7be495;--no:#ff8a80;--okb:#173324;--nob:#3a1d1d;color-scheme:dark}
+body::before{background:var(--bg)}
+header{position:static;background:#7be495;color:#0b2314;border:0;border-radius:0 0 18px 18px;padding:12px}
+header h1{font-size:20px;margin:0;color:#0b2314}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.cur{display:flex;align-items:center;gap:6px;font-size:12px}.cur input{width:110px;padding:6px;background:#12201a;color:#fff;border-radius:8px}
+.hb{display:flex;gap:6px;flex-wrap:wrap}.hb .btn{background:#12201a;color:#c9f5d4;border-color:#12201a;padding:7px 12px;border-radius:10px}
+.tabs{display:flex;gap:8px;padding:12px 12px 0;overflow-x:auto}.tabs button{flex:1;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:12px;padding:11px;font:inherit;font-weight:700;white-space:nowrap;cursor:pointer}.tabs button.on{background:#7be495;color:#0b2314;border-color:#7be495}
+nav{padding:10px 12px;border-bottom:1px solid var(--bd)}nav button{border:0;background:none;color:var(--mu);border-radius:10px;font-weight:700}nav button.on{background:#1d3326;color:#7be495}
+.btn.pr,.btn.ok{color:#0b2314}.card,.stat{border-radius:16px}
+.hero{background:#7be495;color:#0b2314;border-radius:16px;padding:16px;margin-bottom:12px}.hero span{font-size:13px}.hero b{display:block;font-size:30px;margin-top:4px}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.sg .stat{background:var(--card);border:1px solid var(--bd);padding:14px}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header><div class="top"><h1>إدارة المدرسة</h1><label class="cur">العملة <input id="cur" placeholder="مثال: ج.م" oninput="db.set.cur=this.value;save()"></label></div>
+<div class="hb" id="hb"><button class="btn" onclick="lockNow()">🔒 قفل</button><button class="btn" onclick="setPw()">كلمة السر</button><button class="btn" onclick="exportDb()">نسخ احتياطي</button></div></header>
+<div class="tabs" id="sbar"></div>
+<nav id="nav"></nav>
+<main id="app"></main>
+<script>
+const MS=['أكتوبر','نوفمبر','ديسمبر','يناير','فبراير','مارس','أبريل','ماي','يونيو'];
+const LV=['الروضة','الأولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة'];
+const LV_MAX={1:5,2:6};
+const KEY='school_acc_v1';
+let db={students:[],tx:[],set:{phone:'',name1:'المدرسة 1',name2:'المدرسة 2'}};
+try{const r=localStorage.getItem(KEY);if(r)db=Object.assign(db,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){}}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>(Math.round(n*100)/100).toLocaleString('ar-MA',{maximumFractionDigits:2});
+const sName=k=>db.set['name'+k]||('المدرسة '+k);
+let view='dash',sch=0,mon=Math.max(0,Math.min(8,[9,10,11,0,1,2,3,4,5].indexOf(new Date().getMonth())));
+if([6,7,8].includes(new Date().getMonth()))mon=0;
+const tabs=[['dash','📊 لوحة التحكم'],['stu','👩‍🎓 الطلاب'],['pay','💰 المدفوعات'],['inc','⬆️ دخل إضافي'],['exp','⬇️ المصاريف'],['rem','🔔 التذكيرات'],['set','⚙️ الإعدادات']];
+function schoolSel(all=true){return ''&&`<select onchange="sch=+this.value;render()">${all?`<option value="0" ${sch==0?'selected':''}>كل المدارس</option>`:''}<option value="1" ${sch==1?'selected':''}>${esc(sName(1))}</option><option value="2" ${sch==2?'selected':''}>${esc(sName(2))}</option></select>`}
+function monSel(){return `<select onchange="mon=+this.value;render()">${MS.map((m,i)=>`<option value="${i}" ${i==mon?'selected':''}>${m}</option>`).join('')}</select>`}
+const inS=s=>sch==0||s.school==sch;
+const paid=(s,m)=>+((s.pay||{})[m]||0);
+// income of school k in month m (payments + extra income); expenses likewise
+function inc(k,m){let t=0;db.students.forEach(s=>{if(s.school==k&&(m==null||true))t+=m==null?Object.values(s.pay||{}).reduce((a,b)=>a+ +b,0):paid(s,m)});db.tx.forEach(x=>{if(x.t=='inc'&&x.school==k&&(m==null||x.m==m))t+=+x.amt});return t}
+function exp(k,m){return db.tx.filter(x=>x.t=='exp'&&x.school==k&&(m==null||x.m==m)).reduce((a,x)=>a+ +x.amt,0)}
+const ks=()=>sch?[sch]:[1,2];
+const sum=(f,m)=>ks().reduce((a,k)=>a+f(k,m),0);
+
+function render(){ if(!db.set.pw)return setupScr(); if(locked)return lockScr(); sbar();
+ document.getElementById('nav').innerHTML=tabs.map(t=>`<button class="${view==t[0]?'on':''}" onclick="view='${t[0]}';render()">${t[1]}</button>`).join('');
+ document.getElementById('app').innerHTML=({dash,stu,pay,inc:()=>ledger('inc'),exp:()=>ledger('exp'),rem,set})[view]();
+ if(view=='stu')lvOpts();
+}
+function dash(){
+ const I=sum(inc),E=sum(exp);
+ let rows='';for(let m=0;m<9;m++){const a=sum(inc,m),b=sum(exp,m);rows+=`<tr><td>${MS[m]}</td><td>${fmt(a)}</td><td>${fmt(b)}</td><td class="${a-b>=0?'pos':'neg'}">${fmt(a-b)}</td></tr>`}
+ const sec=ks().map(k=>{const rs=LV.slice(0,LV_MAX[k]+1).map((l,i)=>{const st=db.students.filter(s=>s.school==k&&s.level==i);const mo=st.reduce((a,s)=>a+paid(s,mon),0);const yr=st.reduce((a,s)=>a+Object.values(s.pay||{}).reduce((x,y)=>x+ +y,0),0);return `<tr><td>${l}</td><td>${st.length}</td><td>${fmt(mo)}</td><td>${fmt(yr)}</td></tr>`}).join('');return `<div class="card"><h2>${esc(sName(k))} — الأقسام (${MS[mon]})</h2><div class="wrap"><table><tr><th>القسم</th><th>الطلاب</th><th>دخل الشهر</th><th>الدخل السنوي</th></tr>${rs}</table></div></div>`}).join('');
+ const per=ks().map(k=>`<tr><td>${esc(sName(k))}</td><td>${fmt(inc(k,mon))}</td><td>${fmt(exp(k,mon))}</td><td class="${inc(k,mon)-exp(k,mon)>=0?'pos':'neg'}">${fmt(inc(k,mon)-exp(k,mon))}</td><td>${fmt(inc(k)-exp(k))}</td></tr>`).join('');
+ return `<div class="row">${schoolSel()}${monSel()}</div>
+ <div class="hero"><span>صافي السنة (الدخل − المصروفات)</span><b>${M(I-E)}</b></div>
+ <div class="sg"><div class="stat"><span>عدد الطلاب</span><b>${db.students.filter(inS).length}</b></div><div class="stat"><span>عدد الأقسام</span><b>${new Set(db.students.filter(inS).map(s=>s.school+'-'+s.level)).size}</b></div><div class="stat"><span>الدخل السنوي</span><b>${M(I)}</b></div><div class="stat"><span>المصروفات السنوية</span><b>${M(E)}</b></div><div class="stat"><span>الدخل الشهري</span><b>${M(sum(inc,mon))}</b></div><div class="stat"><span>المصروفات الشهرية</span><b>${M(sum(exp,mon))}</b></div><div class="stat"><span>صافي ${MS[mon]}</span><b class="${sum(inc,mon)-sum(exp,mon)>=0?'pos':'neg'}">${M(sum(inc,mon)-sum(exp,mon))}</b></div><div class="stat"><span>المتوقع السنوي من الرسوم</span><b>${M(db.students.filter(inS).reduce((a,s)=>a+s.fee*9,0))}</b></div></div>
+ <div class="card"><h2>كل مدرسة على حدة — ${MS[mon]}</h2><div class="wrap"><table><tr><th>المدرسة</th><th>الدخل</th><th>المصاريف</th><th>الصافي</th><th>الصافي السنوي</th></tr>${per}</table></div></div>
+ <div class="card"><h2>الصافي لكل شهر (من أكتوبر)</h2><div class="wrap"><table><tr><th>الشهر</th><th>الدخل</th><th>المصاريف</th><th>الصافي</th></tr>${rows}<tfoot><tr><td>المجموع</td><td>${fmt(I)}</td><td>${fmt(E)}</td><td class="${I-E>=0?'pos':'neg'}">${fmt(I-E)}</td></tr></tfoot></table></div></div>${sec}`;
+}
+function stu(){
+ const q=(window.q||'').trim();
+ const list=db.students.filter(s=>inS(s)&&(!q||(s.name+s.nid+s.num).includes(q)));
+ return `<div class="card"><h2>تسجيل طالب</h2>
+ <div class="row"><input id="n" placeholder="الاسم الكامل"><select id="sc" onchange="lvOpts()"><option value="1">${esc(sName(1))}</option><option value="2" ${sch==2?'selected':''}>${esc(sName(2))}</option></select><select id="lv"></select></div>
+ <div class="row"><input id="nid" placeholder="الرقم الوطني"><input id="num" placeholder="الرقم (رقم التسجيل)"><input id="fee" type="number" placeholder="القسط الشهري"><input id="ph" type="tel" placeholder="هاتف ولي الأمر"></div>
+ <button class="btn pr" onclick="addStu()">➕ إضافة</button></div>
+ <div class="card"><div class="row">${schoolSel()}<input placeholder="🔍 بحث بالاسم أو الرقم" value="${esc(q)}" oninput="window.q=this.value;render();this.focus()" ></div>
+ <div class="wrap"><table><tr><th>الاسم</th><th>المدرسة</th><th>القسم</th><th>الرقم الوطني</th><th>الرقم</th><th>القسط</th><th>مدفوع سنويا</th><th></th></tr>
+ ${list.map(s=>`<tr><td>${esc(s.name)}</td><td>${s.school}</td><td>${LV[s.level]}</td><td>${esc(s.nid)}</td><td>${esc(s.num)}</td><td>${fmt(s.fee)}</td><td>${fmt(Object.values(s.pay||{}).reduce((a,b)=>a+ +b,0))}</td><td><button class="btn sm no" onclick="delStu('${s.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="8" class="mu">لا يوجد طلاب بعد</td></tr>'}</table></div></div>`;
+}
+function lvOpts(){const k=+document.getElementById('sc').value;document.getElementById('lv').innerHTML=LV.slice(0,LV_MAX[k]+1).map((l,i)=>`<option value="${i}">${l}</option>`).join('')}
+setTimeout(()=>{},0);
+function addStu(){const g=i=>document.getElementById(i).value.trim();if(!g('n'))return alert('أدخل اسم الطالب');
+ db.students.push({id:uid(),name:g('n'),school:+g('sc'),level:+g('lv'),nid:g('nid'),num:g('num'),fee:+g('fee')||0,phone:g('ph'),pay:{}});save();render()}
+function delStu(id){if(confirm('حذف هذا الطالب وكل مدفوعاته؟')){db.students=db.students.filter(s=>s.id!=id);save();render()}}
+function pay(){
+ const st=db.students.filter(inS);const P=st.filter(s=>paid(s,mon)>0),U=st.filter(s=>paid(s,mon)<=0);
+ const tot=P.reduce((a,s)=>a+paid(s,mon),0),due=U.reduce((a,s)=>a+s.fee,0);
+ return `<div class="row">${schoolSel()}${monSel()}</div>
+ <div class="grid card"><div class="stat"><span>دفعوا</span><b class="pos">${P.length}</b></div><div class="stat"><span>لم يدفعوا</span><b class="neg">${U.length}</b></div><div class="stat"><span>المحصّل</span><b>${fmt(tot)}</b></div><div class="stat"><span>المتبقي المتوقع</span><b>${fmt(due)}</b></div></div>
+ <div class="cols"><div class="card"><h2>✅ دفعوا</h2>${P.map(s=>`<div class="it p"><span>${esc(s.name)}<br><span class="mu">${LV[s.level]} · م${s.school}</span></span><span><b>${fmt(paid(s,mon))}</b> <button class="btn sm no" onclick="setPay('${s.id}',0)">إلغاء</button></span></div>`).join('')||'<div class="mu">—</div>'}</div>
+ <div class="card"><h2>⏳ لم يدفعوا</h2>${U.map(s=>`<div class="it u"><span>${esc(s.name)}<br><span class="mu">${LV[s.level]} · م${s.school}</span></span><span><input id="a${s.id}" type="number" value="${s.fee||''}" style="width:80px;padding:4px"> <button class="btn sm ok" onclick="setPay('${s.id}',document.getElementById('a${s.id}').value)">دفع</button></span></div>`).join('')||'<div class="mu">—</div>'}</div></div>`;
+}
+function setPay(id,v){const s=db.students.find(x=>x.id==id);s.pay=s.pay||{};if(+v>0)s.pay[mon]=+v;else delete s.pay[mon];save();render()}
+function ledger(t){
+ const L=db.tx.filter(x=>x.t==t&&inS({school:x.school}));const cats=t=='exp'?['رواتب','كراء','كهرباء وماء','لوازم','صيانة','أخرى']:['رسوم التسجيل','نقل','كتب','أنشطة','أخرى'];
+ return `<div class="card"><h2>${t=='exp'?'إضافة مصروف':'إضافة دخل إضافي'}</h2>
+ <div class="row"><select id="ts">${[1,2].map(k=>`<option value="${k}" ${sch==k?'selected':''}>${esc(sName(k))}</option>`).join('')}</select><select id="tm">${MS.map((m,i)=>`<option value="${i}" ${i==mon?'selected':''}>${m}</option>`).join('')}</select><select id="tc">${cats.map(c=>`<option>${c}</option>`).join('')}</select></div>
+ <div class="row"><input id="ta" type="number" placeholder="المبلغ"><input id="tn" placeholder="ملاحظة"></div>
+ <button class="btn pr" onclick="addTx('${t}')">➕ إضافة</button></div>
+ <div class="card"><div class="row">${schoolSel()}</div><div class="wrap"><table><tr><th>المدرسة</th><th>الشهر</th><th>الفئة</th><th>المبلغ</th><th>ملاحظة</th><th></th></tr>
+ ${L.map(x=>`<tr><td>${x.school}</td><td>${MS[x.m]}</td><td>${esc(x.cat)}</td><td>${fmt(x.amt)}</td><td>${esc(x.note)}</td><td><button class="btn sm no" onclick="delTx('${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="6" class="mu">لا توجد عمليات</td></tr>'}
+ <tfoot><tr><td colspan="3">المجموع</td><td>${fmt(L.reduce((a,x)=>a+ +x.amt,0))}</td><td colspan="2"></td></tr></tfoot></table></div></div>`;
+}
+function addTx(t){const g=i=>document.getElementById(i).value;if(!(+g('ta')>0))return alert('أدخل المبلغ');
+ db.tx.push({id:uid(),t,school:+g('ts'),m:+g('tm'),cat:g('tc'),amt:+g('ta'),note:g('tn')});save();render()}
+function delTx(id){db.tx=db.tx.filter(x=>x.id!=id);save();render()}
+function waLink(ph,txt){return 'https://wa.me/'+String(ph).replace(/\D/g,'')+'?text='+encodeURIComponent(txt)}
+function rem(){
+ const U=db.students.filter(s=>inS(s)&&paid(s,mon)<=0);
+ const rep=report();
+ return `<div class="row">${schoolSel()}${monSel()}</div>
+ <div class="card"><h2>🔔 تذكير أولياء الأمور — ${MS[mon]}</h2><p class="mu">يفتح واتساب برسالة جاهزة لكل ولي أمر (يلزم رقم هاتفه).</p>
+ ${U.map(s=>`<div class="it u"><span>${esc(s.name)} <span class="mu">${s.phone?esc(s.phone):'بدون هاتف'}</span></span>${s.phone?`<a class="btn sm ok" target="_blank" href="${waLink(s.phone,`السلام عليكم، نذكّركم بموعد أداء واجب شهر ${MS[mon]} للتلميذ(ة) ${s.name} (${s.fee} درهم). شكرا لكم.`)}">إرسال</a>`:''}</div>`).join('')||'<div class="mu">الجميع دفع ✅</div>'}</div>
+ <div class="card"><h2>📨 تقرير للمشرف</h2><textarea rows="9" id="rp" readonly>${esc(rep)}</textarea>
+ <div class="row" style="margin-top:8px"><button class="btn" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('rp').value)">نسخ</button>${db.set.phone?`<a class="btn pr" target="_blank" href="${waLink(db.set.phone,rep)}">إرسال عبر واتساب</a>`:'<span class="mu">أضف رقم المشرف في الإعدادات</span>'}</div></div>`;
+}
+function report(){let t=`تقرير ${MS[mon]}\n`;ks().forEach(k=>{t+=`\n${sName(k)}\nالدخل: ${fmt(inc(k,mon))}\nالمصاريف: ${fmt(exp(k,mon))}\nالصافي: ${fmt(inc(k,mon)-exp(k,mon))}\nلم يدفعوا: ${db.students.filter(s=>s.school==k&&paid(s,mon)<=0).length}\n`});t+=`\nالصافي السنوي حتى الآن: ${fmt(sum(inc)-sum(exp))}`;return t}
+function set(){return `<div class="card"><h2>الإعدادات</h2>
+ <div class="row"><input id="s1" value="${esc(db.set.name1)}" placeholder="اسم المدرسة 1"><input id="s2" value="${esc(db.set.name2)}" placeholder="اسم المدرسة 2"></div>
+ <div class="row"><input id="sp" type="tel" value="${esc(db.set.phone)}" placeholder="هاتف المشرف (بالصيغة الدولية)"></div>
+ <button class="btn pr" onclick="Object.assign(db.set,{name1:s1.value,name2:s2.value,phone:sp.value});save();render()">حفظ</button></div>
+ <div class="card"><h2>نسخة احتياطية</h2><p class="mu">البيانات تُحفظ دائما في هذا المتصفح. احتفظ بنسخة احتياطية لنقلها لجهاز آخر.</p>
+ <div class="row"><button class="btn" onclick="exportDb()">⬇️ تصدير</button><label class="btn" style="text-align:center">⬆️ استيراد<input type="file" accept=".json" hidden onchange="importDb(this.files[0])"></label><button class="btn" onclick="window.print()">🖨️ طباعة</button></div></div>`}
+function exportDb(){const a=document.createElement('a');a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(db));a.download='school-backup.json';a.click()}
+function importDb(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{db=JSON.parse(r.result);save();render()}catch(e){alert('ملف غير صالح')}};r.readAsText(f)}
+let locked=!!db.set.pw;
+const M=n=>fmt(n)+(db.set.cur?' '+esc(db.set.cur):'');
+function sbar(){document.getElementById('hb').style.display='';document.getElementById('cur').value=db.set.cur||'';document.getElementById('sbar').innerHTML=[1,2,0].map(k=>`<button class="${sch==k?'on':''}" onclick="sch=${k};render()">${k?esc(sName(k)):'الكل'}</button>`).join('')+'<button style="flex:0 0 46px" onclick="renameS()">✏️</button>'}
+function renameS(){const k=sch||+prompt('رقم المدرسة (1 أو 2)');if(k!=1&&k!=2)return;const n=prompt('اسم المدرسة',sName(k));if(n){db.set['name'+k]=n;save();render()}}
+function lockScr(){document.getElementById('hb').style.display='none';document.getElementById('nav').innerHTML='';document.getElementById('sbar').innerHTML='';document.getElementById('app').innerHTML='<div class="card" style="margin-top:15vh;text-align:center"><h2>🔒 التطبيق مقفل</h2><input id="pwi" type="password" placeholder="كلمة السر" style="margin:8px 0"><button class="btn pr" onclick="unlock()">فتح</button></div>'}
+function unlock(){if(document.getElementById('pwi').value===db.set.pw){locked=false;render()}else alert('كلمة السر خاطئة')}
+function lockNow(){if(!db.set.pw)return alert('حدّد كلمة سر أولا');locked=true;render()}
+function setPw(){const p=prompt('كلمة السر الجديدة (اتركها فارغة لإلغائها)');if(p===null)return;db.set.pw=p;save();alert(p?'تم حفظ كلمة السر':'أُلغيت كلمة السر')}
+function setupScr(){document.getElementById('hb').style.display='none';document.getElementById('nav').innerHTML='';document.getElementById('sbar').innerHTML='';document.getElementById('app').innerHTML='<div class="card" style="margin-top:15vh;text-align:center"><h2>🔐 أنشئ كلمة السر</h2><p class="mu">ستُطلب عند كل فتح للتطبيق (4 أحرف أو أرقام على الأقل)</p><input id="pwn" type="password" placeholder="كلمة السر" style="margin:8px 0"><button class="btn pr" onclick="firstPw()">حفظ ودخول</button></div>'}
+function firstPw(){const p=document.getElementById('pwn').value;if(p.length<4)return alert('كلمة السر قصيرة');db.set.pw=p;locked=false;save();render()}
+(function(){try{const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');x.fillStyle='#0e1712';x.fillRect(0,0,180,180);x.fillStyle='#7be495';x.font='bold 120px Cairo,Arial,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('إ',90,95);const l=document.createElement('link');l.rel='apple-touch-icon';l.href=c.toDataURL('image/png');document.head.appendChild(l)}catch(e){}})();
+render();
+</script>
+</body>
+</html>
